@@ -1,5 +1,7 @@
 # www.fyziovojta.cz
 
+> **2026-11-20:** web převeden ze starého Gulp/Bower buildu (2016) na Astro. Stará verze je v historii gitu (před commitem „Odstranění starého buildu“).
+
 Web Mgr. Markéty Mesany Klemové – statický web v [Astro](https://astro.build), obsah upravitelný přes [Pages CMS](https://pagescms.org), hosting na [Cloudflare Pages](https://pages.cloudflare.com).
 
 ## Vývoj
@@ -36,7 +38,20 @@ Delší texty jsou v Markdownu (`**tučně**`, odstavce oddělené prázdným ř
 
 Fotky: v poli „Fotka“ nahrát nový obrázek (ideálně šířka alespoň 960 px).
 
-## Nasazení (Cloudflare Pages)
+## Nasazení – aktuálně FTP (Gigaserver)
+
+Ostrý web zatím běží na hostingu Gigaserver. Nasazení:
+
+```sh
+pnpm build
+FTP_USER='…' FTP_PASS='…' scripts/deploy-ftp.sh
+```
+
+Skript nejdřív stáhne zálohu stávajících souborů do `backup-server/<datum>/` (v `.gitignore`), pak nahraje `dist/` přes FTPS do složky `fyziovojta.cz/`. Serverový `.htaccess` (přesměrování na `www`) nechává být. Certifikát FTP serveru neprojde ověřením, proto `curl -k` – spojení je šifrované, ale identita serveru se neověřuje.
+
+> **Pozor:** dokud web běží na FTP, úpravy přes Pages CMS se na ostrém webu **neprojeví samy** – po každé změně je potřeba `git pull`, `pnpm build` a skript výše. Automatické nasazení zajistí až přechod na Cloudflare Pages (viz níže a `MIGRACE.md`).
+
+## Nasazení – cíl (Cloudflare Pages)
 
 - Projekt napojený na GitHub repozitář, produkční větev `master`.
 - Build command: `pnpm build` (Cloudflare pozná pnpm podle `pnpm-lock.yaml`), output directory: `dist`, proměnná `NODE_VERSION=22`.
