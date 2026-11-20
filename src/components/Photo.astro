@@ -1,0 +1,24 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  fotka: { obrazek: ImageMetadata; popis: string };
+  /** wide = přes celou šířku, col = do sloupce, right = obtékané vpravo */
+  variant?: 'wide' | 'col' | 'right';
+}
+const { fotka, variant = 'col' } = Astro.props;
+const sizes = {
+  wide: '(max-width: 1000px) 100vw, 960px',
+  col: '(max-width: 720px) 100vw, 460px',
+  right: '(max-width: 720px) 100vw, 460px',
+}[variant];
+---
+
+<Image
+  class={variant === 'col' ? undefined : variant}
+  src={fotka.obrazek}
+  alt={fotka.popis}
+  widths={[480, 960].filter((w) => w <= fotka.obrazek.width)}
+  sizes={sizes}
+/>

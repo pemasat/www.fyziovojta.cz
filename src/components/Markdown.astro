@@ -1,0 +1,9 @@
+---
+import { md } from '../lib/data';
+
+interface Props {
+  text?: string;
+}
+---
+
+<Fragment set:html={md(Astro.props.text)} />

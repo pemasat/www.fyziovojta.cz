@@ -1,0 +1,20 @@
+---
+import { mdInline } from '../lib/data';
+
+interface Props {
+  polozky: { obdobi: string; text: string }[];
+}
+const { polozky } = Astro.props;
+---
+
+<dl>
+  {
+    polozky.map((p) => (
+      <>
+        <dt>{p.obdobi}</dt>
+        <dd set:html={mdInline(p.text)} />
+      </>
+    ))
+  }
+  <slot />
+</dl>

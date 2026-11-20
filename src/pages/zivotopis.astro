@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import Markdown from '../components/Markdown.astro';
+import Photo from '../components/Photo.astro';
+import Timeline from '../components/Timeline.astro';
+import { loadPage } from '../lib/data';
+
+const p = await loadPage('zivotopis');
+const half = Math.ceil(p.praxe.polozky.length / 2);
+---
+
+<Base title={p.titulek} description={p.popisStranky} heading={p.nadpis}>
+  <div class="row has2col">
+    <div class="col">
+      <h2>{p.motivace.nadpis}</h2>
+      <Markdown text={p.motivace.text} />
+    </div>
+    <div class="col">
+      <h2>{p.vzdelani.nadpis}</h2>
+      <Timeline polozky={p.vzdelani.polozky} />
+    </div>
+  </div>
+
+  <div class="row"><Photo fotka={p.fotka} variant="wide" /></div>
+
+  <h2>{p.praxe.nadpis}</h2>
+  <div class="row has2col">
+    <div class="col"><Timeline polozky={p.praxe.polozky.slice(0, half)} /></div>
+    <div class="col"><Timeline polozky={p.praxe.polozky.slice(half)} /></div>
+  </div>
+
+  <div class="row has2col">
+    <div class="col">
+      <h2>{p.kurzy.nadpis}</h2>
+      <Timeline polozky={p.kurzy.polozky} />
+      <Markdown text={p.kurzy.poznamka} />
+    </div>
+    <div class="col"><Photo fotka={p.kurzy.fotka} /></div>
+  </div>
+</Base>

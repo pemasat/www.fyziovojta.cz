@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import Markdown from '../components/Markdown.astro';
+import Photo from '../components/Photo.astro';
+import Timeline from '../components/Timeline.astro';
+import { loadPage } from '../lib/data';
+
+const p = await loadPage('uvod');
+// Vzdělání se upravuje jen na jednom místě – v životopisu
+const { vzdelani } = await loadPage('zivotopis');
+---
+
+<Base title={p.titulek} description={p.popisStranky} heading={p.nadpis} home>
+  <Markdown text={p.uvod} />
+
+  <h2>{p.metoda.nadpis}</h2>
+  <div class="row has2col">
+    <div class="col"><Markdown text={p.metoda.levySloupec} /></div>
+    <div class="col"><Markdown text={p.metoda.pravySloupec} /></div>
+  </div>
+
+  <div class="row"><Photo fotka={p.fotka} variant="wide" /></div>
+
+  <div class="row has2col">
+    <div class="col">
+      <h2>{p.vzdelani.nadpis}</h2>
+      <Timeline polozky={vzdelani.polozky}>
+        <dd><a href="/zivotopis.html">{p.vzdelani.odkazNaZivotopis}</a></dd>
+      </Timeline>
+    </div>
+    <div class="col"><Photo fotka={p.vzdelani.fotka} /></div>
+  </div>
+</Base>

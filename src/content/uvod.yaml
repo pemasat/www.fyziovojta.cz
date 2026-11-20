@@ -1,0 +1,27 @@
+titulek: Vojtova metoda od Markéty Mesany Klemové
+popisStranky: Fyzioterapie Vojtovou metodou pro kojence, děti i dospělé – Mgr. Markéta Mesany Klemová, Praha 8.
+nadpis: Vojtova metoda od Markéty Mesany Klemové
+uvod: |
+  Už jako malou mě bavilo sportovat a pomáhat druhým. Proto nebylo těžké stát se fyzioterapeutkou a pokračovat v rodinné tradici a věnovat se léčbě dětí s pohybovým postižením. Mám tři děti, které jsem v raném vývoji také krátce léčebně podpořila. Vývojová kineziologie podle Vojty se stala mým základem pro léčbu pohybového aparátu u dětí i dospělých.
+metoda:
+  nadpis: Vojtova metoda
+  levySloupec: |
+    Aktivace centrální nervové soustavy výchozí polohou a stimulací vybavovacích zón jak u malých kojenců, tak u dospělých. Jde zde o oslovení a centrální řízení vrozených programů, které jsou reflexně, tzn. nevědomě, realizovatelné.
+
+    U motoricky ohrožených kojenců lze předejít nebo zabránit abnormálnímu držení a abnormálním hybným vzorům (náhradním vzorům).
+  pravySloupec: |
+    U dospělých nebo u dětí s již manifestující infantilní CP (cerebrální parézou = DMO, dětská mozková obrna) je proti tomu situace komplikovanější.
+
+    ### Výchozí polohy
+
+    - reflexní otáčení z polohy na zádech a z polohy na boku
+    - reflexní plazení z polohy na břiše a z polohy na kolenou
+fotka:
+  obrazek: ~/assets/img/prace.jpg
+  popis: Vyšetření
+vzdelani:
+  nadpis: Vzdělání
+  odkazNaZivotopis: Celý životopis
+  fotka:
+    obrazek: ~/assets/img/budova.jpg
+    popis: Budova pracoviště

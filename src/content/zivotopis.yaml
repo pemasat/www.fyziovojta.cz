@@ -1,0 +1,61 @@
+titulek: Životopis
+popisStranky: Životopis fyzioterapeutky Mgr. Markéty Mesany Klemové – vzdělání, pracovní zkušenosti, kurzy Vojtovy metody.
+nadpis: Životopis Markéty Mesany Klemové
+motivace:
+  nadpis: Motivace
+  text: |
+    Už jako malou mě bavilo sportovat a pomáhat druhým. Proto nebylo těžké stát se fyzioterapeutkou a pokračovat v rodinné tradici a věnovat se léčbě dětí s pohybovým postižením. Mám tři děti, které jsem v raném vývoji také krátce léčebně podpořila. Vývojová kineziologie podle Vojty se stala mým základem pro léčbu pohybového aparátu u dětí i dospělých.
+vzdelani:
+  nadpis: Vzdělání
+  polozky:
+    - obdobi: 1995–2002
+      text: |
+        Univerzita Karlova, FTVS, Praha
+        Obor/specializace: Tělesná a pracovní výchova zdravotně postižených
+    - obdobi: 1987–1991
+      text: |
+        SZŠ, Praha
+        Obor/specializace: Rehabilitační pracovník
+    - obdobi: 1987–2010
+      text: |
+        Institut postgraduálního vzdělávání ve zdravotnictví, Praha
+        Obor/specializace: Aplikovaná fyzioterapie
+fotka:
+  obrazek: ~/assets/img/prace.jpg
+  popis: Vyšetření
+praxe:
+  nadpis: Pracovní zkušenosti
+  polozky:
+    - obdobi: "1991"
+      text: Fyzioterapie v Domově sv. Rodiny – dětští pacienti s těžkými kombinovanými poruchami pohybového aparátu.
+    - obdobi: 1993 (krátce 3 měsíce)
+      text: Fyzioterapie v NsP v Říčanech, chirurgie, interna, léčebna pro dlouhodobě nemocné.
+    - obdobi: 1994–1998
+      text: Fyzioterapeutka v NsP v Kostelci nad Černými Lesy – ambulantní i hospitalizovaní pacienti s vrozeným, získaným onemocněním pohybového aparátu, kardiologičtí pacienti, dospělí pacienti s vertebrogenními obtížemi, pacienti s jiným neuromuskulárním onemocněním, ortopedičtí pacienti.
+    - obdobi: 1998 – nyní
+      text: |
+        OSVČ – Ortenovo nám. 1505/37, Praha 7
+        Fyzioterapie centrální parézy v dětském i dospělém věku, vertebrogenní onemocnění akutní i chronické, skoliózy, periferní parézy, při nepoškození alfa motoneuronu v předním rohu míšním, periarthritis humeroscapularis, ortopedické vady nohou, hrudníku, dysplazie kyčlí, stavy po operacích hrudníku, problémy dechových funkcí, astma bronchiale…
+kurzy:
+  nadpis: Kurzy a školení
+  polozky:
+    - obdobi: od 1996
+      text: |
+        RL – CORPUS
+        Metoda V. Vojty
+        Certifikát: Osvědčení
+    - obdobi: od 2001
+      text: |
+        UK v Praze, 2. lékařská fakulta, Klinika rehabilitace
+        Vývojová kineziologie v manuální medicíně
+        Certifikát: absolvování kurzu
+    - obdobi: od 2007
+      text: |
+        Česká lékařská společnost J. E. Purkyně, Společnost pro myoskeletální medicínu, sekce fyzioterapeutická
+        Diagnostika a terapie funkčních poruch
+        Certifikát: Osvědčení
+  poznamka: |
+    Průběžně mnoho pracovních seminářů a školicích akcí Vojtovy metody pod organizací Československé rehabilitační společnosti Dr. Vojty – pasivně i aktivně. A také pod organizací IVG.
+  fotka:
+    obrazek: ~/assets/img/chodba.jpg
+    popis: Čekárna

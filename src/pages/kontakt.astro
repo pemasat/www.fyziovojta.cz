@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Map from '../components/Map.astro';
+import Markdown from '../components/Markdown.astro';
+import Photo from '../components/Photo.astro';
+import { loadPage, telHref } from '../lib/data';
+
+const p = await loadPage('kontakt');
+const site = await loadPage('nastaveni');
+---
+
+<Base title={p.titulek} description={p.popisStranky} heading={p.nadpis}>
+  <div class="row has2col">
+    <div class="col">
+      <h2>{p.adresa.nadpis}</h2>
+      <Markdown text={p.oznameni} />
+      <Markdown text={p.adresa.text} />
+
+      <h2>{p.cenik.nadpis}</h2>
+      <ul>
+        {p.cenik.polozky.map((c) => <li>{c.kdo}: {c.cena}</li>)}
+      </ul>
+      {p.cenik.pojistovny && <p>{p.cenik.pojistovny}</p>}
+
+      <h2>{p.kontaktNadpis}</h2>
+      <p>
+        telefon: <a href={telHref(site.telefon)}>{site.telefon}</a><br />
+        e-mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+    </div>
+    <div class="col">
+      <Map {...p.mapa} />
+    </div>
+  </div>
+
+  <div class="row"><Photo fotka={p.fotka} variant="wide" /></div>
+</Base>

@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Markdown from '../components/Markdown.astro';
+import Photo from '../components/Photo.astro';
+import { loadPage } from '../lib/data';
+
+const p = await loadPage('zkusenosti');
+---
+
+<Base title={p.titulek} description={p.popisStranky} heading={p.nadpis}>
+  {
+    p.pribehy.map((pribeh) => (
+      <section class="row clearfix">
+        <div class="col">
+          <h2>{pribeh.nadpis}</h2>
+          {pribeh.fotka && <Photo fotka={pribeh.fotka} variant="right" />}
+          <Markdown text={pribeh.text} />
+        </div>
+      </section>
+    ))
+  }
+</Base>

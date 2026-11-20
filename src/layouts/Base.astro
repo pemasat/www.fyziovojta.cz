@@ -1,0 +1,91 @@
+---
+import { Image } from 'astro:assets';
+import '@fontsource/source-sans-pro/400.css';
+import '@fontsource/source-sans-pro/700.css';
+import '../styles/global.scss';
+import { loadPage, telHref } from '../lib/data';
+
+interface Props {
+  /** <title> – u úvodní stránky se použije celý, jinak „X – Název webu“ */
+  title: string;
+  description: string;
+  /** Nadpis v hlavičce; „\n“ = zalomení řádku */
+  heading: string;
+  home?: boolean;
+}
+
+const { title, description, heading, home = false } = Astro.props;
+const site = await loadPage('nastaveni');
+
+const nav = [
+  { href: '/', label: 'Úvod' },
+  { href: '/zivotopis.html', label: 'Životopis' },
+  { href: '/zkusenosti-rodicu.html', label: 'Zkušenosti rodičů' },
+  { href: '/kontakt.html', label: 'Kontakt' },
+];
+const path = Astro.url.pathname.replace(/\/index(\.html)?$/, '/') || '/';
+const pageTitle = home ? title : `${title} – ${site.nazevWebu}`;
+const canonical = new URL(path, Astro.site);
+const headingLines = heading.split('\n');
+---
+
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav class="site-nav" aria-label="Hlavní menu">
+        <ul>
+          {
+            nav.map((item) => (
+              <li>
+                <a href={item.href} aria-current={item.href === path ? 'page' : undefined}>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <header class:list={['site-header', { home }]}>
+        <Image
+          class="profile"
+          src={site.profilovaFotka.obrazek}
+          alt={site.profilovaFotka.popis}
+          width={home ? 250 : 100}
+          height={home ? 250 : 100}
+          densities={[1, 2]}
+          loading="eager"
+        />
+        <h1>
+          {headingLines.map((line, i) => (i > 0 ? [<br />, line] : line))}
+        </h1>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="site-footer">
+        <p>
+          Kontakt – telefon: <a href={telHref(site.telefon)}>{site.telefon}</a>, e-mail:{' '}
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

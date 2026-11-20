@@ -1,0 +1,8 @@
+# Společné údaje pro celý web (hlavička, patička, kontakt)
+nazevWebu: Fyzio Vojta
+jmeno: Mgr. Markéta Mesany Klemová
+telefon: "+420 602 214 733"
+email: mesanym@seznam.cz
+profilovaFotka:
+  obrazek: ~/assets/img/marketa.jpg
+  popis: Mgr. Markéta Mesany Klemová

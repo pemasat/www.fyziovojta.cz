@@ -1,0 +1,20 @@
+---
+// Mapa přes OpenStreetMap – bez API klíče a bez registrace.
+// (Starý vložený rámec Mapy.cz „api.mapy.cz/frame“ už nefunguje – dlaždice vrací 403.)
+interface Props {
+  adresa: string;
+  sirka: number;
+  delka: number;
+}
+const { adresa, sirka, delka } = Astro.props;
+
+const d = 0.0025; // výřez mapy kolem bodu
+const bbox = [delka - d, sirka - d * 0.6, delka + d, sirka + d * 0.6].join(',');
+const src = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${sirka},${delka}`;
+const link = `https://mapy.com/fnc/v1/showmap?mapset=basic&center=${delka},${sirka}&zoom=17&marker=true`;
+---
+
+<iframe class="map" src={src} title={`Mapa – ${adresa}`} loading="lazy"></iframe>
+<p class="map-link">
+  <a href={link} target="_blank" rel="noopener">Zobrazit na Mapy.com</a>
+</p>
