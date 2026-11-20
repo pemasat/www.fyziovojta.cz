@@ -4,7 +4,7 @@
 # Použití:  FTP_USER=… FTP_PASS=… scripts/deploy-ftp.sh
 #
 # - nejdřív stáhne zálohu stávajících souborů do backup-server/<datum>/
-# - .htaccess na serveru nechá být; _redirects (jen pro Cloudflare) nenahrává
+# - nahraje i .htaccess (z public/); _redirects (jen pro Cloudflare) nenahrává
 # - certifikát FTP serveru neprojde ověřením, proto -k (spojení je pořád šifrované)
 set -euo pipefail
 

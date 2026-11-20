@@ -47,7 +47,7 @@ pnpm build
 FTP_USER='…' FTP_PASS='…' scripts/deploy-ftp.sh
 ```
 
-Skript nejdřív stáhne zálohu stávajících souborů do `backup-server/<datum>/` (v `.gitignore`), pak nahraje `dist/` přes FTPS do složky `fyziovojta.cz/`. Serverový `.htaccess` (přesměrování na `www`) nechává být. Certifikát FTP serveru neprojde ověřením, proto `curl -k` – spojení je šifrované, ale identita serveru se neověřuje.
+Skript nejdřív stáhne zálohu stávajících souborů do `backup-server/<datum>/` (v `.gitignore`), pak nahraje `dist/` přes FTPS do složky `fyziovojta.cz/`. Nahraje i `public/.htaccess` (přesměrování na `https://www`, cache). Certifikát FTP serveru neprojde ověřením, proto `curl -k` – spojení je šifrované, ale identita serveru se neověřuje.
 
 > **Pozor:** dokud web běží na FTP, úpravy přes Pages CMS se na ostrém webu **neprojeví samy** – po každé změně je potřeba `git pull`, `pnpm build` a skript výše. Automatické nasazení zajistí až přechod na Cloudflare Pages (viz níže a `MIGRACE.md`).
 
