@@ -1,5 +1,5 @@
 titulek: Kontakt
-popisStranky: Adresa pracoviště, ceník a kontakt – Mgr. Markéta Mesany Klemová, nám. Dr. V. Holého 1056/15, Praha 8.
+popisStranky: Adresa pracoviště, ceník a kontakt – Mgr. Markéta Mesany Klemová, Náměstí Dr. Holého 15, Praha 8 – Libeň.
 nadpis: Kontakt
 oznameni: ""
 adresa:
@@ -7,26 +7,24 @@ adresa:
   text: |
     Nestátní zdravotnické zařízení
     Mgr. Markéta Mesany Klemová
-    nám. Dr. V. Holého 1056/15
-    180 00 Praha 8
+    Náměstí Dr. Holého 15
+    180 00 Praha 8 – Libeň
 
     IČO: 67774954
     IČZ: 07998007
 cenik:
   nadpis: Ceník služeb
   polozky:
-    - kdo: Dospělí a děti od 15 let
-      cena: 700 Kč / 55 min
-    - kdo: Cizinci
-      cena: 700 Kč / 55 min
-    - kdo: Děti 0–15 let
-      cena: 600 Kč / 55 min, 400 Kč / 30 min
+    - kdo: Dospělí
+      cena: 1 000 Kč / 50 min
+    - kdo: Děti
+      cena: 500 Kč / 30 min
     - kdo: Držitelé průkazu ZTP, ZTP/P
-      cena: 500 Kč / 55 min
+      cena: sleva individuálně
   pojistovny: "Smlouvy se zdravotními pojišťovnami: OZP, ZPMV, VOZP, ZPŠ, RBP"
 kontaktNadpis: Kontakt
 mapa:
-  adresa: nám. Dr. V. Holého 1056/15, Praha 8
+  adresa: Náměstí Dr. Holého 15, Praha 8 – Libeň
   sirka: 50.1064259499
   delka: 14.473412746
 fotka:
