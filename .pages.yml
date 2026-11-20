@@ -1,0 +1,177 @@
+# Konfigurace Pages CMS (https://pagescms.org) – webová administrace obsahu.
+# Přihlášení: https://app.pagescms.org → GitHub účet s přístupem k repozitáři.
+# Každá uložená změna = commit do GitHubu → Cloudflare Pages web automaticky přestaví (cca 1 min).
+
+media:
+  input: src/assets/img
+  # Cesta, která se zapíše do YAML; „~/“ je alias na src/ (viz tsconfig.json)
+  output: ~/assets/img
+  extensions: [jpg, jpeg, png, webp]
+
+components:
+  fotka:
+    type: object
+    fields:
+      - name: obrazek
+        label: Fotka
+        type: image
+        required: true
+      - name: popis
+        label: Popis fotky (pro nevidomé a vyhledávače)
+        type: string
+        required: true
+
+  obdobi:
+    type: object
+    list: true
+    fields:
+      - name: obdobi
+        label: Období (např. 1995–2002)
+        type: string
+        required: true
+      - name: text
+        label: Popis (každý řádek = nový řádek na webu)
+        type: text
+        required: true
+
+content:
+  - name: nastaveni
+    label: Nastavení webu (kontakt, patička)
+    type: file
+    path: src/content/nastaveni.yaml
+    format: yaml
+    fields:
+      - { name: nazevWebu, label: Název webu, type: string, required: true }
+      - { name: jmeno, label: Jméno, type: string, required: true }
+      - { name: telefon, label: Telefon, type: string, required: true }
+      - { name: email, label: E-mail, type: string, required: true }
+      - { name: profilovaFotka, label: Profilová fotka (v kroužku nahoře), component: fotka }
+
+  - name: uvod
+    label: Úvod
+    type: file
+    path: src/content/uvod.yaml
+    format: yaml
+    fields:
+      - name: titulek
+        label: Titulek v záložce prohlížeče
+        type: string
+      - name: popisStranky
+        label: Popis stránky pro Google (1–2 věty)
+        type: text
+      - name: nadpis
+        label: Hlavní nadpis stránky
+        type: string
+      - name: uvod
+        label: Úvodní text
+        type: rich-text
+        options: { format: markdown }
+      - name: metoda
+        label: Vojtova metoda
+        type: object
+        fields:
+          - { name: nadpis, label: Nadpis, type: string }
+          - { name: levySloupec, label: Levý sloupec, type: rich-text, options: { format: markdown } }
+          - { name: pravySloupec, label: Pravý sloupec, type: rich-text, options: { format: markdown } }
+      - { name: fotka, label: Velká fotka, component: fotka }
+      - name: vzdelani
+        label: Vzdělání (samotné položky se upravují v Životopisu)
+        type: object
+        fields:
+          - { name: nadpis, label: Nadpis, type: string }
+          - { name: odkazNaZivotopis, label: Text odkazu na životopis, type: string }
+          - { name: fotka, label: Fotka vedle vzdělání, component: fotka }
+
+  - name: zivotopis
+    label: Životopis
+    type: file
+    path: src/content/zivotopis.yaml
+    format: yaml
+    fields:
+      - { name: titulek, label: Titulek v záložce prohlížeče, type: string }
+      - { name: popisStranky, label: Popis stránky pro Google (1–2 věty), type: text }
+      - { name: nadpis, label: Hlavní nadpis stránky, type: string }
+      - name: motivace
+        label: Motivace
+        type: object
+        fields:
+          - { name: nadpis, label: Nadpis, type: string }
+          - { name: text, label: Text, type: rich-text, options: { format: markdown } }
+      - name: vzdelani
+        label: Vzdělání (zobrazí se i na Úvodu)
+        type: object
+        fields:
+          - { name: nadpis, label: Nadpis, type: string }
+          - { name: polozky, label: Položky, component: obdobi }
+      - { name: fotka, label: Velká fotka, component: fotka }
+      - name: praxe
+        label: Pracovní zkušenosti (rozdělí se do 2 sloupců)
+        type: object
+        fields:
+          - { name: nadpis, label: Nadpis, type: string }
+          - { name: polozky, label: Položky, component: obdobi }
+      - name: kurzy
+        label: Kurzy a školení
+        type: object
+        fields:
+          - { name: nadpis, label: Nadpis, type: string }
+          - { name: polozky, label: Položky, component: obdobi }
+          - { name: poznamka, label: Poznámka pod kurzy, type: rich-text, options: { format: markdown } }
+          - { name: fotka, label: Fotka vedle kurzů, component: fotka }
+
+  - name: zkusenosti
+    label: Zkušenosti rodičů
+    type: file
+    path: src/content/zkusenosti.yaml
+    format: yaml
+    fields:
+      - { name: titulek, label: Titulek v záložce prohlížeče, type: string }
+      - { name: popisStranky, label: Popis stránky pro Google (1–2 věty), type: text }
+      - { name: nadpis, label: Hlavní nadpis stránky, type: string }
+      - name: pribehy
+        label: Příběhy
+        type: object
+        list: true
+        fields:
+          - { name: nadpis, label: Nadpis (jméno dítěte), type: string, required: true }
+          - { name: fotka, label: Fotka (nepovinná), component: fotka }
+          - { name: text, label: Text, type: rich-text, options: { format: markdown }, required: true }
+
+  - name: kontakt
+    label: Kontakt a ceník
+    type: file
+    path: src/content/kontakt.yaml
+    format: yaml
+    fields:
+      - { name: titulek, label: Titulek v záložce prohlížeče, type: string }
+      - { name: popisStranky, label: Popis stránky pro Google (1–2 věty), type: text }
+      - { name: nadpis, label: Hlavní nadpis stránky, type: string }
+      - { name: oznameni, label: Oznámení nad adresou (nepovinné, např. dovolená), type: rich-text, options: { format: markdown } }
+      - name: adresa
+        label: Adresa pracoviště
+        type: object
+        fields:
+          - { name: nadpis, label: Nadpis, type: string }
+          - { name: text, label: Adresa, IČO, IČZ (každý řádek = nový řádek), type: text }
+      - name: cenik
+        label: Ceník
+        type: object
+        fields:
+          - { name: nadpis, label: Nadpis, type: string }
+          - name: polozky
+            label: Položky ceníku
+            type: object
+            list: true
+            fields:
+              - { name: kdo, label: Pro koho, type: string, required: true }
+              - { name: cena, label: Cena, type: string, required: true }
+          - { name: pojistovny, label: Zdravotní pojišťovny, type: string }
+      - { name: kontaktNadpis, label: Nadpis sekce Kontakt, type: string }
+      - name: mapa
+        label: Mapa
+        type: object
+        fields:
+          - { name: adresa, label: Adresa (popisek mapy), type: string }
+          - { name: sirka, label: Zeměpisná šířka (např. 50.1064), type: number }
+          - { name: delka, label: Zeměpisná délka (např. 14.4734), type: number }
+      - { name: fotka, label: Velká fotka dole, component: fotka }

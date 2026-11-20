@@ -1,40 +1,45 @@
-Web Skeleton
-============
+# www.fyziovojta.cz
 
-Obsah
------
+Web Mgr. Markéty Mesany Klemové – statický web v [Astro](https://astro.build), obsah upravitelný přes [Pages CMS](https://pagescms.org), hosting na [Cloudflare Pages](https://pages.cloudflare.com).
 
-Gulp:   
-- scss -> css   
-- autoprefixer   
-- spojeni všech js souborů do main.js   
-- watch   
-- sprity
+## Vývoj
 
-Bower:   
-- jquery   
+```sh
+npm install
+npm run dev       # http://localhost:4321
+npm run build     # výstup do dist/
+npm run preview   # náhled buildu
+npm run check     # kontrola typů a obsahu
+```
 
-První spuštení
---------------
+Vyžaduje Node 22+.
 
-V přikazovém řadku ve složce frontend spustit přikazy
-   
-    npm install
-    bower install
+## Kde co je
 
-Gulp
-----
-Spustit build
-    
-    gulp   
-Spustit watch funkce
-    
-    gulp watch
+| Co | Kde |
+| --- | --- |
+| Texty stránek | `src/content/*.yaml` (jeden soubor = jedna stránka, `nastaveni.yaml` = společné údaje) |
+| Schéma obsahu (validace) | `src/content.config.ts` |
+| Fotky | `src/assets/img/` – v YAML jako `~/assets/img/soubor.jpg`; Astro je zmenší a převede do WebP |
+| Šablony stránek | `src/pages/*.astro`, společný layout `src/layouts/Base.astro` |
+| Komponenty | `src/components/` (fotka, časová osa `<dl>`, mapa, markdown) |
+| Styly | `src/styles/` (SCSS, barvy v `_variables.scss`) |
+| Konfigurace CMS | `.pages.yml` |
 
-Poslední změny
---------------
+Delší texty jsou v Markdownu (`**tučně**`, odstavce oddělené prázdným řádkem, jednoduchý konec řádku = `<br>`).
 
-1. Do gulpfile přidan task na vytvoření spritů, protože skoro vždy ho potřebujeme
-2. gulp-clean vyměnen za del z duvodu - "depreciated"
-3. V FyzioVojtau se použiva vždy poslední verze pluginů (v package.json misto čisla verze je 'latest')
-4. Přidany ukazky spritů. V img/sprites/test a test2 jsou puvodní obrazky, ve složce img - sprite-test.png a sprite-test2.png - konečné obrazky (sprity), ve složce scss/sprites scss soubory pro sprity. Přiklad použití v main.scss
+## Úprava obsahu (pro klienta)
+
+1. Otevřít <https://app.pagescms.org> a přihlásit se GitHub účtem.
+2. Vybrat repozitář `www.fyziovojta.cz` → stránku vlevo → upravit → **Save**.
+3. Za cca 1 minutu je změna na webu (Cloudflare Pages web přestaví sám).
+
+Fotky: v poli „Fotka“ nahrát nový obrázek (ideálně šířka alespoň 960 px).
+
+## Nasazení (Cloudflare Pages)
+
+- Projekt napojený na GitHub repozitář, produkční větev `master`.
+- Build command: `npm run build`, output directory: `dist`, proměnná `NODE_VERSION=22`.
+- Každá jiná větev dostane náhledovou adresu `<větev>.<projekt>.pages.dev`.
+- Vlastní doména `www.fyziovojta.cz` v nastavení projektu → Custom domains.
+- Přesměrování `fyziovojta.cz` → `https://www.fyziovojta.cz`: Cloudflare → Rules → Redirect Rules (nebo u registrátora, pokud DNS není u Cloudflare).
