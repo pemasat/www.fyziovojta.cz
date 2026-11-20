@@ -5,14 +5,14 @@ Web Mgr. Markéty Mesany Klemové – statický web v [Astro](https://astro.buil
 ## Vývoj
 
 ```sh
-npm install
-npm run dev       # http://localhost:4321
-npm run build     # výstup do dist/
-npm run preview   # náhled buildu
-npm run check     # kontrola typů a obsahu
+pnpm install
+pnpm dev       # http://localhost:4321
+pnpm build     # výstup do dist/
+pnpm preview   # náhled buildu
+pnpm check     # kontrola typů a obsahu
 ```
 
-Vyžaduje Node 22+.
+Vyžaduje Node 22+ a pnpm (`corepack enable` nebo `brew install pnpm`).
 
 ## Kde co je
 
@@ -39,7 +39,7 @@ Fotky: v poli „Fotka“ nahrát nový obrázek (ideálně šířka alespoň 96
 ## Nasazení (Cloudflare Pages)
 
 - Projekt napojený na GitHub repozitář, produkční větev `master`.
-- Build command: `npm run build`, output directory: `dist`, proměnná `NODE_VERSION=22`.
+- Build command: `pnpm build` (Cloudflare pozná pnpm podle `pnpm-lock.yaml`), output directory: `dist`, proměnná `NODE_VERSION=22`.
 - Každá jiná větev dostane náhledovou adresu `<větev>.<projekt>.pages.dev`.
 - Vlastní doména `www.fyziovojta.cz` v nastavení projektu → Custom domains.
 - Přesměrování `fyziovojta.cz` → `https://www.fyziovojta.cz`: Cloudflare → Rules → Redirect Rules (nebo u registrátora, pokud DNS není u Cloudflare).

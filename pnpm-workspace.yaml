@@ -1,0 +1,3 @@
+allowBuilds:
+  # volitelná závislost sass (jen pro `sass --watch`), build skript není potřeba
+  '@parcel/watcher': false
